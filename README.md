@@ -161,7 +161,7 @@ To summarize key order metrics for each customer, I used the **`SUBTOTAL()`** fu
 <img width="632" alt="subtotal" src="https://github.com/user-attachments/assets/2d51fb43-4a5f-495e-823b-3b26253ff7df" />
 
 
-Unlike standard aggregation functions, `SUBTOTAL()` adjusts automatically based on filtered data—making it ideal for dashboards that rely on interactivity.
+Unlike standard aggregation functions, `SUBTOTAL()` adjusts automatically based on filtered data making it ideal for dashboards that rely on interactivity.
 
 ### d. Order History Integration
 
@@ -195,11 +195,13 @@ If not already visible, go to:
 1. Go to the **Developer** tab → click **Record Macro**.
 2. In the pop-up:
 
-   * **Macro Name:** `Advanced_Filter`
+   * **Macro Name:** `Advanced_Filter`or `FilterOrders`
    * **Store Macro In:** `This Workbook`
 3. Click **OK** to start recording.
 4. While recording, apply the **Advanced Filter** that links the selected customer to their corresponding order history from the **Order Info** sheet.
 5. Stop the filter once satisfied.
+
+<img width="960" alt="Record Macro" src="https://github.com/user-attachments/assets/6a8668e1-2db7-4fc3-9def-adf98524a48a" />
 
 
 #### **Step 3: Stop Recording**
@@ -211,8 +213,10 @@ If not already visible, go to:
 
 1. Still under the **Developer** tab, click **Insert** → choose **Button (Form Control)**.
 2. Draw the button on the **Customer Dashboard** sheet.
-3. In the dialog box that appears, choose the `Advanced_Filter` macro.
+3. In the dialog box that appears, choose the `FilterOrders` macro.
 4. Rename the button to something intuitive like **“Load Data”** or **“Filter Orders”**.
+
+<img width="960" alt="assign macro to button" src="https://github.com/user-attachments/assets/637db266-060f-4ba6-a443-817b025208f4" />
 
 
 #### **Step 5: Use the Macro**
@@ -221,11 +225,6 @@ Clicking the macro button now triggers the **Advanced Filter**. This:
 
 * Instantly updates the **Order History** to show only the selected customer’s records.
 * Refreshes **Order Count**, **Average Freight**, and **Last Order** using `SUBTOTAL()`, making the dashboard fully dynamic.
-
-
-#### Optional Visual to Include
-
-> 📷 *Image showing the button in action — before and after clicking “Load Data” to demonstrate dynamic filtering.*
 
 ---
 
