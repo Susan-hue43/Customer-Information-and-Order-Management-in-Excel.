@@ -8,6 +8,9 @@ Managing customer and order data across scattered spreadsheets can become a time
 
 ### Workbook Structure
 
+<img width="951" alt="raw data" src="https://github.com/user-attachments/assets/2297f05d-648f-4ef7-9a29-ebd58666db10" />
+
+
 The Excel workbook is structured into three key worksheets:
 
 * **Customer Info:** This sheet contains a database of customer information, with **91** rows and **11** columns. Each row represents a unique customer, and the columns store various attributes such as customer name, contact details, and other relevant data.
@@ -105,4 +108,126 @@ This filled all missing values while preserving consistency for regional analysi
 
 A number of entries lacked `Fax` numbers. These were left **intentionally blank**, as fax data was not critical to the analysis or dashboard functions. However, null values were visually marked (e.g., using conditional formatting) to alert users.
 
+<img width="960" alt="clean data" src="https://github.com/user-attachments/assets/b2eba8af-bad4-46cc-9d34-cad4957e95d4" />
+
+
 ---
+
+## 3. Customer Dashboard Creation
+
+To streamline access to individual customer records and their associated order history, a fully interactive **Customer Dashboard** was developed using Excel’s built-in tools and formulas.
+
+<img width="951" alt="dashboard" src="https://github.com/user-attachments/assets/1ee10bea-8685-424b-9f79-d4b34794cbd6" />
+
+
+### a. Customer Selection via Data Validation
+
+I utilized the **Data Validation** feature from the **Data** tab to create a dropdown list for selecting customer names. This restricted the input to only valid, predefined names from the **Customer Info** sheet. By doing so, I prevented issues such as typos, partial names, or special characters, which could otherwise lead to lookup errors or incorrect data retrieval. This validation step not only enhanced data accuracy but also improved the reliability of the dashboard by ensuring only legitimate customer entries could be selected.
+
+<img width="506" alt="validation" src="https://github.com/user-attachments/assets/050ce098-1124-4489-ba17-367f4cc28dca" />
+
+
+### b. Populating Customer Information with XLOOKUP and VLOOKUP
+
+Once a customer name is selected, Excel formulas retrieve the corresponding customer details automatically. I applied both **`XLOOKUP()`** and **`VLOOKUP()`** functions to fetch information such as:
+
+* **Customer ID**
+* **Contact Name**
+* **Contact Title**
+* **Address**
+* **City**
+* **Region**
+* **Postal Code**
+* **State**
+* **Phone**
+* **Fax**
+
+<img width="521" alt="xlookup" src="https://github.com/user-attachments/assets/9b20cad7-952f-4293-991e-80f8c420c103" />
+
+
+<img width="505" alt="vlookup" src="https://github.com/user-attachments/assets/fa45eb9c-c990-44d6-9aad-00f9b7f27cd4" />
+
+
+These lookups are dynamically linked to the dropdown selection, ensuring that the dashboard updates instantly whenever a different customer is selected. This provided a seamless and user-friendly experience.
+
+### c. Summary Metrics Using SUBTOTAL
+
+To summarize key order metrics for each customer, I used the **`SUBTOTAL()`** function. This included:
+
+* **Order Count**
+* **Average Freight**
+* **Last Order Date**
+
+<img width="632" alt="subtotal" src="https://github.com/user-attachments/assets/2d51fb43-4a5f-495e-823b-3b26253ff7df" />
+
+
+Unlike standard aggregation functions, `SUBTOTAL()` adjusts automatically based on filtered data—making it ideal for dashboards that rely on interactivity.
+
+### d. Order History Integration
+
+The **Order History** section was brought in from the **Order Info** sheet. It lists all orders related to the selected customer. This section was connected using advanced filter logic and dynamic references so it could respond to changes in the customer selection.
+
+### e. Automating Filters with Macros
+
+Initially, the dashboard required manual refreshing of filters whenever a new customer was selected. To improve usability, I created a **macro-enabled button** that triggers an **Advanced Filter**. This automation instantly updates the order history and summary fields based on the current customer selection, eliminating the need for repetitive steps and improving the overall efficiency of the dashboard.
+
+<img width="951" alt="populated dashboard" src="https://github.com/user-attachments/assets/0a944b79-b004-4141-bcdf-b9afa00265a5" />
+
+
+---
+
+
+### Step-by-Step Guide: Automating the Advanced Filter with a Macro
+
+To automate refreshing the customer order history when a customer is selected, I created a macro tied to a button on the dashboard. Below are the steps I followed:
+
+
+#### **Step 1: Enable Developer Tab**
+
+If not already visible, go to:
+
+* `File` → `Options` → `Customize Ribbon`
+* Check the **Developer** checkbox to enable the tab.
+
+
+#### **Step 2: Record the Macro**
+
+1. Go to the **Developer** tab → click **Record Macro**.
+2. In the pop-up:
+
+   * **Macro Name:** `Advanced_Filter`
+   * **Store Macro In:** `This Workbook`
+3. Click **OK** to start recording.
+4. While recording, apply the **Advanced Filter** that links the selected customer to their corresponding order history from the **Order Info** sheet.
+5. Stop the filter once satisfied.
+
+
+#### **Step 3: Stop Recording**
+
+* Return to the Developer tab and click **Stop Recording** to save the macro.
+
+
+#### **Step 4: Add and Assign Macro to a Button**
+
+1. Still under the **Developer** tab, click **Insert** → choose **Button (Form Control)**.
+2. Draw the button on the **Customer Dashboard** sheet.
+3. In the dialog box that appears, choose the `Advanced_Filter` macro.
+4. Rename the button to something intuitive like **“Load Data”** or **“Filter Orders”**.
+
+
+#### **Step 5: Use the Macro**
+
+Clicking the macro button now triggers the **Advanced Filter**. This:
+
+* Instantly updates the **Order History** to show only the selected customer’s records.
+* Refreshes **Order Count**, **Average Freight**, and **Last Order** using `SUBTOTAL()`, making the dashboard fully dynamic.
+
+
+#### Optional Visual to Include
+
+> 📷 *Image showing the button in action — before and after clicking “Load Data” to demonstrate dynamic filtering.*
+
+---
+
+### Outcome
+Upon completion, this Excel-based tool serves as a lightweight, yet powerful customer lookup system suitable for small businesses or departments that handle customer interactions, support, or sales reporting. It enables staff to quickly access customer profiles and purchase history with minimal effort, supporting better customer service and operational decision-making.
