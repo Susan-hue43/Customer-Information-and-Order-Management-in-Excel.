@@ -1,6 +1,8 @@
 # Customer-Information-and-Order-Management-in-Excel.
+![20250520_1610_Customer Order Management_simple_compose_01jvpwz0ckec2a25p3kgg8ag0a](https://github.com/user-attachments/assets/ab01fc12-d09f-4e4d-9590-848c96cef195)
+
 ## Introduction 
-Managing customer and order data across scattered spreadsheets can become a time-consuming routine for a sales support team in a bustling retail environment. Repetitive lookups, manual filtering, and endless scrolling often led to errors and delays. To solve this, this project focuses on an Excel-based solution that automates the retrieval of customer information and their related orders through a centralized dashboard by simply entering a customer name in a dashboard interface. This approach reduces manual effort, enhances accuracy, and improves accessibility for business users who need to look up customer records and order history on demand. 
+Managing customer and order data across scattered spreadsheets can become a time-consuming routine for a sales support team in a bustling retail environment. Repetitive lookups, manual filtering, and endless scrolling often lead to errors and delays. To solve this, this project focuses on an Excel-based solution that automates the retrieval of customer information and their related orders through a centralized dashboard by simply entering a customer name in a dashboard interface. This approach reduces manual effort, enhances accuracy, and improves accessibility for business users who need to look up customer records and order history on demand. 
 
 
 ---
@@ -106,9 +108,10 @@ This filled all missing values while preserving consistency for regional analysi
 
 #### b. Fax
 
-A number of entries lacked `Fax` numbers. These were left **intentionally blank**, as fax data was not critical to the analysis or dashboard functions. However, null values were visually marked (e.g., using conditional formatting) to alert users.
+Several entries were missing `Fax` numbers. To maintain consistency and clearly indicate unavailable information, these cells were filled with *Not Stated* using the **Find and Replace** tool. This approach ensures the dataset remains clean and avoids leaving blank fields that could disrupt analysis or presentation.
 
-<img width="960" alt="clean data" src="https://github.com/user-attachments/assets/b2eba8af-bad4-46cc-9d34-cad4957e95d4" />
+
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/ba1c8dfa-e140-46aa-86f3-583aa9a3c118" />
 
 
 ---
